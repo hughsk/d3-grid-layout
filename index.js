@@ -1,3 +1,5 @@
+module.exports = orderedGrid
+
 function orderedGrid(d3) {
   function layout(starters) {
     var grid = {}
@@ -156,5 +158,3 @@ function orderedGrid(d3) {
 
   return layout
 }
-
-module.exports = orderedGrid

@@ -11,6 +11,9 @@ with the built-in layouts OK.
 
 ## Installation ##
 
+Built for use with [browserify](http://browserify.org/) - open an issue or pull
+request if you'd like to use it with something else :)
+
 ``` bash
 npm install d3-grid-layout
 ```

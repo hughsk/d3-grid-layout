@@ -6,6 +6,9 @@
   "dependencies": {
     "d3": "~3.1.4"
   },
+  "scripts": {
+    "rebuild": "node_modules/.bin/browserify example.js -o bundle.js"
+  },
   "keywords": [
     "grid",
     "layout",
@@ -16,5 +19,8 @@
     "data"
   ],
   "author": "Hugh Kennedy <hughskennedy@gmail.com> (http://hughskennedy.com/)",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "~2.7.2"
+  }
 }

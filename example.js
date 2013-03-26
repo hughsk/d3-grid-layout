@@ -1,4 +1,4 @@
-var d3 = require('d3')
+var d3 = window.d3 || require('d3')
 var grid = require('./')(d3)
 
 var layout = grid()
@@ -50,9 +50,6 @@ setInterval(function() {
     .attr('r', function(d) { return d.scale })
 
 }, 250)
-
-document.body.style.margin = 0
-document.body.style.padding = 0
 
 window.onresize = function() {
   layout
