@@ -1,0 +1,20 @@
+{
+  "name": "d3-grid-layout",
+  "version": "0.0.1",
+  "description": "A grid layout for d3.js",
+  "main": "index.js",
+  "dependencies": {
+    "d3": "~3.1.4"
+  },
+  "keywords": [
+    "grid",
+    "layout",
+    "d3.js",
+    "visualisation",
+    "svg",
+    "square",
+    "data"
+  ],
+  "author": "Hugh Kennedy <hughskennedy@gmail.com> (http://hughskennedy.com/)",
+  "license": "MIT"
+}
