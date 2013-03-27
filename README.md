@@ -48,17 +48,19 @@ Set the width of the grid layout.
 
 Set the height of the grid layout.
 
-**grid.center(dimensions)**
+**grid.align(dimensions)**
 
-Pass a boolean to enable/disable centering of the layout (e.g. `true`).
-Alternatively, pass an array for toggling horizontal and vertical centering
-(e.g. `[true, false]`).
+Pass a number to change the alignment of the layout, where -1 is top-left, 0 is
+centered, and 1 is bottom-right.
+
+Alternatively, pass an array for toggling horizontal and vertical alignment
+(e.g. `[-1, 0]` is middle-left).
 
 **grid.speed(speed)**
 
 Change the transition rate when updating the grid layout - defaults to `0.02`.
 
-**grid.diameter(diameter)**
+**grid.radius(radius)**
 
 The maxiumum amount of distance between points in the grid.
 
@@ -79,3 +81,16 @@ Forces an animation tick.
 
 Updates the grid layout - this is done automatically when using `grid.add` or
 `grid.push`, but should be triggered manually otherwise.
+
+**grid.cols()**
+
+Returns the amount of columns wide the grid is currently.
+
+**grid.rows()**
+
+Returns the amount of columns high the grid is currently.
+
+**grid.size()**
+
+Returns an array with the actual width/height of the grid space, e.g.
+`[400, 500]`.

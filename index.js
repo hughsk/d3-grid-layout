@@ -14,19 +14,28 @@ function orderedGrid(d3) {
       , alpha = 0
       , speed = 0.02
       , ease = d3.ease('linear')
-      , center = [false, false]
+      , align = [0, 0]
+      , localWidth
+      , localHeight
       , sort
+      , rows
+      , cols
 
     grid.sort = function(fn) {
       if (!arguments.length) return sort
       sort = fn; return grid
     }
 
-    // Centering
+    // Alignment
     // [horizontal, vertical] or both with a single boolean
-    grid.center = function(c) {
+    // -1 is left
+    //  0 is centered
+    // +1 is right
+    grid.align = function(c) {
       if (!arguments.length) return c
-      center = Array.isArray(c) ? c : [c, c]
+      align = Array.isArray(c) ? c : [c, c]
+      align[0] = align[0] * 0.5 + 0.5
+      align[1] = align[1] * 0.5 + 0.5
       return grid
     }
 
@@ -41,6 +50,16 @@ function orderedGrid(d3) {
       height = h; return grid
     }
 
+    grid.rows = function() {
+      return rows
+    }
+    grid.cols = function() {
+      return cols
+    }
+    grid.size = function() {
+      return [localWidth, localHeight]
+    }
+
     // Speed of movement when rearranging
     // the node layout
     grid.speed = function(s) {
@@ -49,9 +68,9 @@ function orderedGrid(d3) {
     }
 
     // The distance between nodes on the grid
-    grid.diameter = function(d) {
+    grid.radius = function(d) {
       if (!arguments.length) return diameter
-      diameter = d; return grid
+      diameter = d / 2; return grid
     }
 
     // add multiple values to the grid
@@ -88,24 +107,26 @@ function orderedGrid(d3) {
     // after push/add
     grid.update = function() {
       var gridLength = nodes.length
-        , gridHeight = Math.max(Math.floor(Math.sqrt(gridLength * height / width)), 1)
-        , gridWidth = Math.ceil(gridLength / gridHeight)
-        , localWidth = Math.min(width, diameter * gridWidth)
-        , localHeight = Math.min(height, diameter * gridHeight)
-        , offsetX = center[0] ? (width - localWidth) / 2 : 0
-        , offsetY = center[1] ? (height - localHeight) / 2 : 0
+
+      rows = Math.max(Math.floor(Math.sqrt(gridLength * height / width)), 1)
+      cols = Math.ceil(gridLength / rows)
+      localWidth = Math.min(width, diameter * cols)
+      localHeight = Math.min(height, diameter * rows)
+
+      var offsetX = (width - localWidth) * align[0]
+        , offsetY = (height - localHeight) * align[1]
         , i = 0
         , node
 
       if (sort) nodes.sort(sort)
 
       toploop:
-      for (var x = 0.5; x < gridWidth; x += 1)
-      for (var y = 0.5; y < gridHeight; y += 1, i += 1) {
+      for (var x = 0.5; x < cols; x += 1)
+      for (var y = 0.5; y < rows; y += 1, i += 1) {
         node = nodes[i]
         if (!node) break toploop
-        node.gx = offsetX + localWidth * x / gridWidth
-        node.gy = offsetY + localHeight * y / gridHeight
+        node.gx = offsetX + localWidth * x / cols
+        node.gy = offsetY + localHeight * y / rows
         node.sx = node.x
         node.sy = node.y
       }

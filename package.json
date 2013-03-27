@@ -1,6 +1,6 @@
 {
   "name": "d3-grid-layout",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A grid layout for d3.js",
   "main": "index.js",
   "dependencies": {
@@ -22,5 +22,9 @@
   "license": "MIT",
   "devDependencies": {
     "browserify": "~2.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hughsk/d3-grid-layout.git"
   }
 }
