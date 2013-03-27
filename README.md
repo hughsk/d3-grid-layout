@@ -88,7 +88,7 @@ Returns the amount of columns wide the grid is currently.
 
 **grid.rows()**
 
-Returns the amount of columns high the grid is currently.
+Returns the amount of rows high the grid is currently.
 
 **grid.size()**
 
